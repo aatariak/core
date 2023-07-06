@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  database:
+    # Official Postgres image from DockerHub (we use the last version)
+    container_name: aatariak_db
+    image: 'postgres:latest'
+
+    ports:
+      - 5430:5432
+
+    environment:
+      POSTGRES_USER: username # The PostgreSQL user (useful to connect to the database)
+      POSTGRES_PASSWORD: password # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_DB: aatariak_db # The PostgreSQL default database (automatically created at first launch)
+
+    networks:
+      aatariak_default:
+
+
+networks:
+  aatariak_default:
+    external: true

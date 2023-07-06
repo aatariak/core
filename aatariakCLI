@@ -1,0 +1,10 @@
+#!/bin/bash
+
+java \
+    -Dspring.main.banner-mode=OFF \
+    -Dlogging.level.root=ERROR \
+    -Dlogging.level.com.namir.aatariak=ERROR \
+    -Dlogging.level.org.springframework.security=ERROR \
+    -Dlogging.file.path=./logs \
+    -jar aatariak-cli/target/aatariak-cli-0.0.1-SNAPSHOT.jar \
+    "$@"
