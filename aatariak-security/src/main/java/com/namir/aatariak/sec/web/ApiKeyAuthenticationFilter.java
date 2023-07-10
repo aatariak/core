@@ -1,17 +1,29 @@
 package com.namir.aatariak.sec.web;
 
-import com.namir.aatariak.sec.ApiKeyAuthenticationToken;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import com.namir.aatariak.sec.ApiKeyAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
+
+    private final AuthenticationManager authenticationManager;
+
+    public ApiKeyAuthenticationFilter(
+            AuthenticationManager authenticationManager
+    ) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -21,10 +33,17 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        ApiKeyAuthenticationToken authentication = new ApiKeyAuthenticationToken(xApiKey);
+        try {
+            ApiKeyAuthenticationToken authentication = new ApiKeyAuthenticationToken(xApiKey);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            Authentication authenticated = authenticationManager.authenticate(authentication);
 
-        filterChain.doFilter(request, response);
+            SecurityContextHolder.getContext().setAuthentication(authenticated);
+
+            filterChain.doFilter(request, response);
+
+        } catch (BadCredentialsException e) {
+            response.sendError(HttpStatus.UNAUTHORIZED.value(), e.getMessage());
+        }
     }
 }

@@ -1,3 +1,20 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # must register this domain in /etc/hosts against 127.0.0.1
+          issuer-uri: "http://auth-server:8080/realms/master"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5430/aatariak_db
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+
 aatariak:
   security:
     api-key: "faridmousayouhebalcousa"

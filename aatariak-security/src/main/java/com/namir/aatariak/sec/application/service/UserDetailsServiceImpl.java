@@ -2,10 +2,8 @@ package com.namir.aatariak.sec.application.service;
 
 import com.namir.aatariak.sec.domain.entity.Role;
 import com.namir.aatariak.sec.domain.valueObject.Permission;
+import jakarta.annotation.PostConstruct;
 import org.springframework.data.domain.Page;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +13,6 @@ import com.namir.aatariak.shared.valueObjects.EmailAddress;
 import com.namir.aatariak.sec.infrastructure.repository.UserRepository;
 import com.namir.aatariak.sec.infrastructure.domainService.AatariakUserDetails;
 
-import javax.annotation.PostConstruct;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;

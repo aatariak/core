@@ -5,8 +5,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,21 +28,15 @@ public class AatariakAdminApiOAuth2SecurityConfiguration {
     @ConditionalOnWebApplication
     public SecurityFilterChain filterChainOAuth2AdminApi(HttpSecurity http) throws Exception {
         http
-                .cors().and()
-                .csrf().disable()
-//                .authorizeRequests().and()
-//                .anyRequest().authenticated()
-                .authorizeRequests(auth -> auth
-                        .antMatchers("/api/v1/**").authenticated()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/v1/**").authenticated()
                         .anyRequest().permitAll()
                 )
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .requestCache()
-                .requestCache(new NullRequestCache()).and()
-                .oauth2ResourceServer()
-                .jwt()
-                .jwtAuthenticationConverter(converter);
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt
+                                .jwtAuthenticationConverter(converter)
+                        )
+                );
 
         return http.build();
     }

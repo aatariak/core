@@ -1,6 +1,6 @@
 package com.namir.aatariak.rest.controller.open;
 
-import com.namir.aatariak.rest.response.UsersCountResponse;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,6 @@ import com.namir.aatariak.rest.request.AuthorizeRequest;
 import com.namir.aatariak.sec.application.service.AuthService;
 import com.namir.aatariak.sec.application.service.UserDataAccess;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j

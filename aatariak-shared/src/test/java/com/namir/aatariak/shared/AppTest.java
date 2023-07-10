@@ -1,4 +1,4 @@
-package com.namir;
+package com.namir.aatariak.shared;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

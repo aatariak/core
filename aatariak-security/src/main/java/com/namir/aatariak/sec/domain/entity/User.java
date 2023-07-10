@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.namir.aatariak.sec.domain.valueObject.Permission;
 import com.namir.aatariak.shared.valueObjects.EmailAddress;
 import com.namir.aatariak.shared.valueObjects.ID;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;

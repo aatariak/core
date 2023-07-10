@@ -1,7 +1,6 @@
-package com.namir.aatariak.sec.user;
+package com.namir.aatariak.sec;
 
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.jwt.JwtDecoder;

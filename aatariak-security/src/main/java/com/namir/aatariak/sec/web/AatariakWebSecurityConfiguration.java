@@ -3,6 +3,11 @@ package com.namir.aatariak.sec.web;
 import org.springframework.context.annotation.Bean;
 import com.namir.aatariak.sec.ApiKeyAuthenticationProvider;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.RequestCacheConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.ProviderManager;
@@ -12,6 +17,9 @@ import org.springframework.security.web.authentication.AnonymousAuthenticationFi
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import static com.namir.aatariak.sec.web.OpenApiCustomDsl.customDsl;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @ConditionalOnWebApplication
@@ -37,23 +45,36 @@ public class AatariakWebSecurityConfiguration {
         return new CorsFilter(source);
     }
 
+
+//    @Bean
+//    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+//        AuthenticationManagerBuilder authenticationManagerBuilder =
+//                http.getSharedObject(AuthenticationManagerBuilder.class);
+//        authenticationManagerBuilder.authenticationProvider(apiKeyAuthenticationProvider);
+//        return authenticationManagerBuilder.build();
+//    }
+
     @Bean
     @Order(110) // order is important so that more specific matches come before more general ones
     public SecurityFilterChain filterChainAatariak(HttpSecurity http) throws Exception  {
 
-        return http
-                .cors()
-                .and()
-                .csrf().disable()
-                .sessionManagement().disable()
-                .requestCache().disable()
-                .authorizeRequests(auth -> auth
-                        .antMatchers("/api/v2/**").authenticated()
-                        .anyRequest().permitAll()
-                )
-                .authenticationManager(new ProviderManager(apiKeyAuthenticationProvider))
-                .addFilterBefore(new ApiKeyAuthenticationFilter(), AnonymousAuthenticationFilter.class)
-                .build();
-    }
+//        return http
+//                .securityMatcher("/api/v2/**")
+//                .cors(withDefaults())
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .sessionManagement(AbstractHttpConfigurer::disable)
+//                .requestCache(RequestCacheConfigurer::disable)
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/api/v2/**").permitAll()
+//                )
+//                .authenticationManager(new ProviderManager(apiKeyAuthenticationProvider))
+//                .addFilterBefore(new ApiKeyAuthenticationFilter(), AnonymousAuthenticationFilter.class)
+//                .build();
+        http
+                .securityMatcher("/api/v2/**")
+                .apply(customDsl())
+                .apiProvider(apiKeyAuthenticationProvider);
 
+        return http.build();
+    }
 }

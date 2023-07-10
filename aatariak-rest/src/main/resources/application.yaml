@@ -7,7 +7,7 @@ spring:
       resourceserver:
         jwt:
           # must register this domain in /etc/hosts against 127.0.0.1
-          issuer-uri: "http://auth-server:8080/realms/master"
+          issuer-uri: "http://localhost:8080/realms/master"
 
   datasource:
     url: jdbc:postgresql://localhost:5430/aatariak_db

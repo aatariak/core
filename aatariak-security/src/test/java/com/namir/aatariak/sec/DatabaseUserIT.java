@@ -1,14 +1,12 @@
-package com.namir.aatariak.sec.user.user;
+package com.namir.aatariak.sec;
 
-import com.namir.aatariak.sec.application.service.AuthService;
-import com.namir.aatariak.shared.valueObjects.ID;
 import org.junit.Test;
 import org.junit.Before;
 import org.flywaydb.core.Flyway;
 import org.junit.runner.RunWith;
+import com.namir.aatariak.shared.valueObjects.ID;
 import com.namir.aatariak.sec.domain.entity.User;
 import org.springframework.jdbc.core.JdbcTemplate;
-import com.namir.aatariak.sec.user.SecTestConfiguration;
 import org.testcontainers.containers.PostgreSQLContainer;
 import com.namir.aatariak.shared.valueObjects.EmailAddress;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,9 +18,9 @@ import com.namir.aatariak.sec.infrastructure.repository.UserRepository;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {SecTestConfiguration.class})
-public class DatabaseUserTests {
+@RunWith(SpringRunner.class) // You need this annotation to just enable spring boot features
+@SpringBootTest(classes = {SecTestConfiguration.class}) // This annotation is used to load complete application context for end to end integration testing
+public class DatabaseUserIT {
 
     @Autowired
     private PostgreSQLContainer<?> postgreSQLContainer;

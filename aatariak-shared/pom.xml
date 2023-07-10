@@ -5,7 +5,13 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.namir</groupId>
+    <parent>
+        <groupId>com.namir</groupId>
+        <artifactId>aatariak</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <artifactId>aatariak-shared</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>aatariak-shared</name>
@@ -23,7 +29,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
