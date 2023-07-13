@@ -7,6 +7,7 @@ import com.namir.aatariak.shared.valueObjects.EmailAddress;
 import com.namir.aatariak.shared.valueObjects.ID;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode()
 public class User implements Serializable {
     private ID id;
 
@@ -41,11 +43,6 @@ public class User implements Serializable {
 
     public boolean isEnabled() {
         return this.enabled;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email);
     }
 
     @Override
