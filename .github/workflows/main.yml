@@ -39,7 +39,7 @@ jobs:
 
       - name: Build, tag, and push docker image to Amazon ECR
         env:
-          REGISTRY: "023231733398.dkr.ecr.us-east-2.amazonaws.com"
+          REGISTRY: ${{ secrets.REGISTRY }}
           REPOSITORY: aatariak-rest
           IMAGE_TAG: ${{ github.sha }}
         run: |
