@@ -4,7 +4,7 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Copy the compiled Java application (JAR file) into the container
-COPY ../aatariak-rest/target/aatariak-rest-0.0.1-SNAPSHOT.jar /app/aatariak-rest-0.0.1-SNAPSHOT.jar
+COPY ./aatariak-rest/target/aatariak-rest-0.0.1-SNAPSHOT.jar /app/aatariak-rest-0.0.1-SNAPSHOT.jar
 
 # Expose any necessary ports
 EXPOSE 8888
