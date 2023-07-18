@@ -22,3 +22,9 @@ jobs:
 
       - name: Test and Build with Maven
         run: mvn verify --no-transfer-progress
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::023231733398:role/AatariakGithubRegistryRole
+          aws-region: eu-north-1

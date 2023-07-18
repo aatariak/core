@@ -10,7 +10,7 @@ spring:
           issuer-uri: "http://auth-server:8080/realms/master"
 
   datasource:
-    url: jdbc:postgresql://localhost:5430/aatariak_db
+    url: jdbc:postgresql://192.168.1.169:5430/aatariak_db
     username: username
     password: password
     driver-class-name: org.postgresql.Driver

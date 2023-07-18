@@ -2,6 +2,18 @@ version: '3'
 
 services:
 
+  app:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    ports:
+      - 8888:8888
+    environment:
+      BOOT_ACTIVE_PROFILE: local
+    networks:
+      aatariak_default:
+
+
   database:
     # Official Postgres image from DockerHub (we use the last version)
     container_name: aatariak_db
