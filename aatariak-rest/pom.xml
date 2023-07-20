@@ -15,7 +15,7 @@
     <description>Aatariak project Rest api</description>
 
     <properties>
-        <revision>1.0.0</revision>
+        <revision>0.0.1</revision>
         <changelist>-SNAPSHOT</changelist>
         <sha1/>
     </properties>
