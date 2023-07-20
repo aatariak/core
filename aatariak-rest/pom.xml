@@ -10,9 +10,15 @@
     </parent>
 
     <artifactId>aatariak-rest</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}${sha1}${changelist}</version>
     <name>aatariak-rest</name>
     <description>Aatariak project Rest api</description>
+
+    <properties>
+        <revision>1.0.0</revision>
+        <changelist>-SNAPSHOT</changelist>
+        <sha1/>
+    </properties>
 
     <dependencies>
         <dependency>
