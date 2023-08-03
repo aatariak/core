@@ -34,6 +34,7 @@ logging:
 aatariak:
   security:
     api-key: "faridmousayouhebalcousa"
+    default-user-password: ""
 
 server:
   port: 8888

@@ -33,7 +33,8 @@ logging:
           oauth2: DEBUG
 aatariak:
   security:
-    api-key: ${API_SECURITY_KEY}
+    api-key: ${API_SECURITY_KEY:cousa}
+    default-user-password: ${DEFAULT_USER_PASSWORD:}
 
 server:
   port: 8888

@@ -3,6 +3,7 @@ package com.namir.aatariak.sec.application.service;
 import com.namir.aatariak.sec.domain.entity.Role;
 import com.namir.aatariak.sec.domain.valueObject.Permission;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ import java.util.List;
 
 @Service
 public class UserDetailsServiceImpl implements UserDataAccess {
+
+    @Value("${aatariak.security.default-user-password}")
+    private String defaultPassword;
 
     UserRepository userRepository;
 
@@ -56,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDataAccess {
     @PostConstruct
     public void initAdminUser() {
         if (userRepository.count() == 0L) {
-            String pwd = generatePassword();
+            String pwd = (this.defaultPassword != null && !this.defaultPassword.isEmpty()) ? this.defaultPassword : generatePassword();
             System.out.println("New root user was created with username 'namirabboud@gmail.com' and password '" + pwd + "'");
             User rootUser = new User();
             rootUser.setName("namir");
