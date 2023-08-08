@@ -25,18 +25,18 @@ public class Permission implements ValueObjectBaseInterface {
     }
 
     public static boolean isValid(String permission) {
-        return Objects.equals(permission, "Admin") || Objects.equals(permission, "User") || Objects.equals(permission, "Anyone");
+        return Objects.equals(permission, "Admin") || Objects.equals(permission, "Passenger") || Objects.equals(permission, "Rider");
     }
 
     public static Permission createAdminPermission() {
         return new Permission("Admin");
     }
 
-    public static Permission createUserPermission() {
-        return new Permission("User");
+    public static Permission createPassengerPermission() {
+        return new Permission("Passenger");
     }
 
-    public static Permission createAnyonePermission() {
-        return new Permission("Anyone");
+    public static Permission createRiderPermission() {
+        return new Permission("Rider");
     }
 }

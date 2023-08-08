@@ -7,19 +7,13 @@ spring:
       resourceserver:
         jwt:
           # must register this domain in /etc/hosts against 127.0.0.1
-          issuer-uri: "http://localhost:8080/realms/master"
+          issuer-uri: "http://192.168.56.10:8080/realms/master"
 
   datasource:
-    url: jdbc:postgresql://192.168.1.169:5430/aatariak_db
-    username: username
+    url: jdbc:postgresql://192.168.56.10:5432/aatariak-main
+    username: farid
     password: password
     driver-class-name: org.postgresql.Driver
-
-  flyway:
-    url: jdbc:postgresql://192.168.1.169:5430/aatariak_db
-    user: username
-    password: password
-    clean-disabled: false
 
   devtools:
     restart:
@@ -35,7 +29,7 @@ logging:
 aatariak:
   security:
     api-key: "faridmousayouhebalcousa"
-    default-user-password: ""
+    default-user-password: "cousa"
 
 server:
   port: 8888

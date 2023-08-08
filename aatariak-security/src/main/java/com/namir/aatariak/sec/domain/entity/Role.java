@@ -14,7 +14,7 @@ public class Role implements Serializable {
     @JsonBackReference
     private User user;
 
-    private Permission permission = Permission.createUserPermission();
+    private Permission permission = Permission.createPassengerPermission();
 
     public Role(Permission permission) {
         this.permission = permission;

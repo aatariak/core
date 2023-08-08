@@ -69,8 +69,8 @@ public class UserDetailsServiceImpl implements UserDataAccess {
             rootUser.setRoles(
                 new HashSet<>(Arrays.asList(
                         new Role(Permission.createAdminPermission()),
-                        new Role(Permission.createUserPermission()),
-                        new Role(Permission.createAnyonePermission())
+                        new Role(Permission.createPassengerPermission()),
+                        new Role(Permission.createRiderPermission())
                 ))
             );
             createUser(rootUser);
