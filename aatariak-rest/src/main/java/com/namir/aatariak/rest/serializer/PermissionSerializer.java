@@ -3,7 +3,7 @@ package com.namir.aatariak.rest.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.namir.aatariak.sec.domain.valueObject.Permission;
+import com.namir.aatariak.user.domain.valueObject.Permission;
 
 import java.io.IOException;
 

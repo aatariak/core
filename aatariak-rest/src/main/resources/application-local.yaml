@@ -39,4 +39,3 @@ server:
 #    key-password: "${SSL_KEY_PASS}"
 #    key-store: "certs/keystore.jks"
 #    key-store-password: "${SSL_KEY_PASS}"
-

@@ -1,14 +1,11 @@
 package com.namir.aatariak.rest.controller.open;
 
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.namir.aatariak.sec.domain.entity.User;
 import org.springframework.web.bind.annotation.*;
-import com.namir.aatariak.rest.request.AuthorizeRequest;
-import com.namir.aatariak.sec.application.service.AuthService;
-import com.namir.aatariak.sec.application.service.UserDataAccess;
+import com.namir.aatariak.user.domain.entity.User;
+import com.namir.aatariak.user.application.service.UserService;
 
 import java.util.List;
 
@@ -17,23 +14,19 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RequestMapping("api/v2/users")
 public class OpenUserController {
-    private UserDataAccess userService;
-
-    private AuthService authService;
+    private final UserService userService;
 
     public OpenUserController(
-            UserDataAccess userService,
-            AuthService authService
+            UserService userService
     )
     {
         this.userService = userService;
-        this.authService = authService;
     }
 
     @GetMapping
     public ResponseEntity<List<User>> users()
     {
-        List<User> users = this.userService.getUsers();
+        List<User> users = this.userService.loadAll();
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
@@ -47,16 +40,7 @@ public class OpenUserController {
     @GetMapping("/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email)
     {
-        User user = this.userService.loadUserByEmail(email);
+        User user = this.userService.loadByUsername(email);
         return ResponseEntity.status(HttpStatus.OK).body(user);
-    }
-
-    @PostMapping("/authenticate")
-    public ResponseEntity<String> authorize(@Valid @RequestBody AuthorizeRequest authorizeRequest)
-    {
-        if (!this.authService.validateCredentials(authorizeRequest.getEmail(), authorizeRequest.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body("Authentication successful");
     }
 }

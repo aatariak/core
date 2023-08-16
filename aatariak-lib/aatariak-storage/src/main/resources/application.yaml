@@ -1,0 +1,7 @@
+aws:
+  access-key: ZSSV0fnOfhy9LStGDwKo
+  secret-key: 9Q0ygkLpbyzKDX78S1XD0llbzKX9WgDwT05VHHGx
+  region: null
+  endpoint-url: http://192.168.56.10:9000
+  bucket-name: aatariak
+

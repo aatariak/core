@@ -5,10 +5,10 @@ import com.namir.aatariak.rest.serializer.EmailAddressSerializer;
 import com.namir.aatariak.rest.serializer.IdSerializer;
 import com.namir.aatariak.rest.serializer.PermissionSerializer;
 import com.namir.aatariak.rest.serializer.RoleSerializer;
-import com.namir.aatariak.sec.domain.entity.Role;
-import com.namir.aatariak.sec.domain.valueObject.Permission;
 import com.namir.aatariak.shared.valueObjects.EmailAddress;
 import com.namir.aatariak.shared.valueObjects.ID;
+import com.namir.aatariak.user.domain.entity.Role;
+import com.namir.aatariak.user.domain.valueObject.Permission;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

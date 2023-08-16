@@ -1,14 +1,13 @@
 package com.namir.aatariak.cli.subcommands;
 
-import com.namir.aatariak.sec.application.service.UserDataAccess;
-import com.namir.aatariak.sec.domain.entity.User;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
 import picocli.CommandLine;
+import org.springframework.stereotype.Component;
+import com.namir.aatariak.user.domain.entity.User;
+import org.springframework.security.core.Authentication;
+import com.namir.aatariak.user.application.service.UserService;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.List;
 
@@ -19,10 +18,10 @@ import java.util.List;
 )
 @Component
 public class UserSubCommand {
-    protected UserDataAccess userService;
+    protected UserService userService;
 
     public UserSubCommand(
-            UserDataAccess userService
+            UserService userService
     )
     {
         this.userService = userService;
@@ -45,7 +44,7 @@ public class UserSubCommand {
         }
 
         try {
-            List<User> users = this.userService.getUsers();
+            List<User> users = this.userService.loadAll();
 
             for (User user: users) {
                 System.out.println(user.getName() + " - " + user.getEmail() + " - " + user.getRoles().toString());

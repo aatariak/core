@@ -1,0 +1,24 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    url: jdbc:tc:postgresql:11.1:///integration-tests-db
+    username: sa
+    password: sa
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    url: jdbc:tc:postgresql:11.1:///integration-tests-db
+
+aatariak:
+  security:
+    default-user-password: ${DEFAULT_USER_PASSWORD:}
+
+aws:
+  access-key: ZSSV0fnOfhy9LStGDwKo
+  secret-key: 9Q0ygkLpbyzKDX78S1XD0llbzKX9WgDwT05VHHGx
+  region: null
+  endpoint-url: http://192.168.56.10:9000
+  bucket-name: aatariak
+

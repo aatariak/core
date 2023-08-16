@@ -29,6 +29,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.namir</groupId>
+            <artifactId>aatariak-security</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>info.picocli</groupId>
             <artifactId>picocli-spring-boot-starter</artifactId>
             <version>${picocli.version}</version>
